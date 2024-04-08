@@ -6,3 +6,7 @@ type IItem = {
 };
 
 type ISortDirection = "asc" | "desc";
+
+interface ICartItem extends IItem {
+  quantity: number;
+}

@@ -10,12 +10,26 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<IItem>) => {
-      state.items.push(action.payload);
-      state.totalPrice += action.payload.price;
+      const existingItem = state.items.find((item) => item.id === action.payload.id);
+      if (existingItem) {
+        existingItem.quantity += 1;
+        state.totalPrice += action.payload.price;
+      } else {
+        state.items.push({ ...action.payload, quantity: 1 });
+        state.totalPrice += action.payload.price;
+      }
     },
     removeFromCart: (state, action: PayloadAction<IItem>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload.id);
-      state.totalPrice -= action.payload.price;
+      const existingItemIndex = state.items.findIndex((item) => item.id === action.payload.id);
+      if (existingItemIndex !== -1) {
+        if (state.items[existingItemIndex].quantity === 1) {
+          state.totalPrice -= state.items[existingItemIndex].price;
+          state.items.splice(existingItemIndex, 1);
+        } else {
+          state.items[existingItemIndex].quantity -= 1;
+          state.totalPrice -= state.items[existingItemIndex].price;
+        }
+      }
     },
   },
 });
@@ -25,6 +39,6 @@ export const cartActions = cartSlice.actions;
 export default cartSlice;
 
 type IDefaultState = {
-  items: IItem[];
+  items: ICartItem[];
   totalPrice: number;
 };
