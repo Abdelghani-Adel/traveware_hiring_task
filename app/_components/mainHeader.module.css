@@ -14,8 +14,8 @@
 .cartItemsCount {
   font-weight: bold;
   position: absolute;
-  top: -20%;
-  right: -60%;
+  top: -10%;
+  left: -60%;
   background-color: #fff;
   width: 25px;
   height: 25px;

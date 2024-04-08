@@ -22,7 +22,7 @@ const Page = () => {
       <div className="container py-4">
         <form onSubmit={submitHandler}>
           <div className="row justify-content-center">
-            <div className="col-4">
+            <div className="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4">
               <div className="d-flex flex-column gap-3 border p-3 rounded-3">
                 <h5>Contact Details</h5>
                 <input
