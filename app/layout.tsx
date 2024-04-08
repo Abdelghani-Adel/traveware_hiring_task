@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import AppProviders from "./_provider/AppProviders";
+import MainHeader from "./_components/MainHeader";
 
 export const metadata: Metadata = {
   title: "TraveWare Task",
@@ -15,7 +14,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <AppProviders>
+        <body>
+          <MainHeader />
+          {children}
+        </body>
+      </AppProviders>
     </html>
   );
 }
