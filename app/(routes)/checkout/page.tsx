@@ -1,11 +1,21 @@
 "use client";
-import { useAppSelector } from "@/app/_redux/store";
+import { cartActions } from "@/app/_redux/slices/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/app/_redux/store";
+import { useRouter } from "next/navigation";
 import React from "react";
+import { toast } from "react-toastify";
 
 const Page = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const cartState = useAppSelector((state) => state.cart);
 
-  const submitHandler = () => {};
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(cartActions.checkout());
+    toast.success("You order has been placed successfully");
+    router.push("/");
+  };
 
   return (
     <main>

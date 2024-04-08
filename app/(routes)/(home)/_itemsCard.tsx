@@ -2,12 +2,14 @@ import { cartActions } from "@/app/_redux/slices/cartSlice";
 import { useAppDispatch } from "@/app/_redux/store";
 import React from "react";
 import { MdAddShoppingCart } from "react-icons/md";
+import { toast } from "react-toastify";
 
 const ItemCard = (props: IProps) => {
   const dispatch = useAppDispatch();
   const { name, description, price } = props.data;
 
   const addToCart = () => {
+    toast.success("Item has been added to cart");
     dispatch(cartActions.addToCart(props.data));
   };
 
