@@ -1,7 +1,7 @@
 import { renderHook, act } from "@testing-library/react";
 import useItems from "./useItems";
 
-describe("useItems hook", () => {
+describe("useItems hook functions", () => {
   it("should fetch items with the proper structure", async () => {
     const { result, rerender } = renderHook(() => useItems());
 

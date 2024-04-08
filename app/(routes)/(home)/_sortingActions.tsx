@@ -16,10 +16,10 @@ const SortingActions = (props: IProps) => {
 
   return (
     <div className="d-flex gap-3">
-      <button className="btn btn-warning" onClick={handleNameSort}>
+      <button className="btn btn-warning" data-testid="sortByNameBtn" onClick={handleNameSort}>
         Sort By Name
       </button>
-      <button className="btn btn-warning" onClick={handlePriceSort}>
+      <button className="btn btn-warning" data-testid="sortByPriceBtn" onClick={handlePriceSort}>
         Sort By Price
       </button>
     </div>

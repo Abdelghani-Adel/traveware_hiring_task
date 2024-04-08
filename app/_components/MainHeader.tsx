@@ -17,7 +17,7 @@ const MainHeader = () => {
           </Link>
           {/* <h4 className="m-0 text-white">TraveWare Hiring Task</h4> */}
 
-          <Link href="/cart" className={styles.cartIcon_wrapper}>
+          <Link href="/cart" className={styles.cartIcon_wrapper} data-testid="cartCount">
             <FiShoppingCart />
             <span className={styles.cartItemsCount}>
               <span>{cartState.items.length}</span>

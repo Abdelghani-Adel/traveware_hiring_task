@@ -23,7 +23,7 @@ const ItemCard = (props: IProps) => {
         <p>
           <strong>Price : </strong> <span>{price}</span>
         </p>
-        <button className="btn btn-success" onClick={addToCart}>
+        <button data-testid="addToCartBtn" className="btn btn-success" onClick={addToCart}>
           <MdAddShoppingCart /> Add to cart
         </button>
       </div>

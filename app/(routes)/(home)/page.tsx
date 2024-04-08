@@ -5,7 +5,7 @@ import SearchBar from "./_searchBar";
 import SortingActions from "./_sortingActions";
 import PriceFilter from "./_priceFilter";
 
-export default function Home() {
+const Home: React.FC = () => {
   const { shownItems, filterItemsByName, filterItemsByPrice, sortItemsByName, sortItemsByPrice } =
     useItems();
 
@@ -32,4 +32,6 @@ export default function Home() {
       </div>
     </main>
   );
-}
+};
+
+export default Home;

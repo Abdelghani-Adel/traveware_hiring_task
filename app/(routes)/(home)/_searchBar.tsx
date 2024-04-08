@@ -10,6 +10,7 @@ const SearchBar = (props: IProps) => {
         type="text"
         className="form-control"
         placeholder="Search by name ..."
+        data-testid="searchBar"
         onChange={onSearchByName}
       />
     </div>

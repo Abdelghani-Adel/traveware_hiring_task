@@ -31,7 +31,7 @@ const PriceFilter = (props: IProps) => {
       </div>
 
       <div className="row">
-        <div className="col">
+        <div className="col" data-testid="priceSlider">
           <RangeSlider
             min={min}
             max={max}
