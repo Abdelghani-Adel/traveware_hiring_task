@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "name": "Apples",
+    "description": "Fresh and juicy apples",
+    "price": 10.5
+  },
+  {
+    "id": 2,
+    "name": "Bananas",
+    "description": "Ripe bananas",
+    "price": 12.25
+  },
+  {
+    "id": 3,
+    "name": "Milk",
+    "description": "Fresh dairy milk",
+    "price": 15.8
+  },
+  {
+    "id": 4,
+    "name": "Bread",
+    "description": "Whole grain bread",
+    "price": 11.99
+  },
+  {
+    "id": 5,
+    "name": "Eggs",
+    "description": "Farm-fresh eggs",
+    "price": 13.5
+  },
+  {
+    "id": 6,
+    "name": "Chicken Breast",
+    "description": "Boneless, skinless chicken",
+    "price": 20.75
+  },
+  {
+    "id": 7,
+    "name": "Pasta",
+    "description": "Assorted pasta varieties",
+    "price": 9.95
+  },
+  {
+    "id": 8,
+    "name": "Rice",
+    "description": "Long-grain white rice",
+    "price": 11.45
+  },
+  {
+    "id": 9,
+    "name": "Spinach",
+    "description": "Fresh spinach leaves",
+    "price": 14.2
+  },
+  {
+    "id": 10,
+    "name": "Tomatoes",
+    "description": "Ripe red tomatoes",
+    "price": 12.99
+  },
+  {
+    "id": 11,
+    "name": "Potatoes",
+    "description": "Fresh potatoes",
+    "price": 10.75
+  },
+  {
+    "id": 12,
+    "name": "Onions",
+    "description": "Yellow onions",
+    "price": 11.3
+  },
+  {
+    "id": 13,
+    "name": "Carrots",
+    "description": "Fresh carrots",
+    "price": 10.5
+  },
+  {
+    "id": 14,
+    "name": "Salmon Fillet",
+    "description": "Fresh salmon fillet",
+    "price": 24.99
+  },
+  {
+    "id": 15,
+    "name": "Ground Beef",
+    "description": "Lean ground beef",
+    "price": 18.5
+  },
+  {
+    "id": 16,
+    "name": "Orange Juice",
+    "description": "100% pure orange juice",
+    "price": 15.75
+  },
+  {
+    "id": 17,
+    "name": "Yogurt",
+    "description": "Greek yogurt",
+    "price": 11.2
+  },
+  {
+    "id": 18,
+    "name": "Cheese",
+    "description": "Cheddar cheese",
+    "price": 16.35
+  },
+  {
+    "id": 19,
+    "name": "Cereal",
+    "description": "Assorted cereal varieties",
+    "price": 13.99
+  },
+  {
+    "id": 20,
+    "name": "Applesauce",
+    "description": "Natural unsweetened",
+    "price": 10.25
+  },
+  {
+    "id": 21,
+    "name": "Olive Oil",
+    "description": "Extra virgin olive oil",
+    "price": 18.75
+  },
+  {
+    "id": 22,
+    "name": "Coffee",
+    "description": "Premium ground coffee",
+    "price": 19.5
+  },
+  {
+    "id": 23,
+    "name": "Tea",
+    "description": "Assorted tea varieties",
+    "price": 12.99
+  },
+  {
+    "id": 24,
+    "name": "Peanut Butter",
+    "description": "Creamy peanut butter",
+    "price": 11.95
+  },
+  {
+    "id": 25,
+    "name": "Jelly",
+    "description": "Grape jelly",
+    "price": 10.8
+  },
+  {
+    "id": 26,
+    "name": "Bacon",
+    "description": "Smoked bacon",
+    "price": 14.25
+  },
+  {
+    "id": 27,
+    "name": "Frozen Pizza",
+    "description": "Assorted frozen pizza",
+    "price": 16.99
+  },
+  {
+    "id": 28,
+    "name": "Ice Cream",
+    "description": "Vanilla ice cream",
+    "price": 12.5
+  },
+  {
+    "id": 29,
+    "name": "Frozen Vegetables",
+    "description": "Assorted frozen vegetable",
+    "price": 11.45
+  },
+  {
+    "id": 30,
+    "name": "Soda",
+    "description": "Assorted soda flavors",
+    "price": 10.99
+  },
+  {
+    "id": 31,
+    "name": "Chips",
+    "description": "Potato chips",
+    "price": 10.25
+  },
+  {
+    "id": 32,
+    "name": "Cookies",
+    "description": "Chocolate chip cookies",
+    "price": 11.75
+  },
+  {
+    "id": 33,
+    "name": "Crackers",
+    "description": "Assorted crackers",
+    "price": 10.5
+  },
+  {
+    "id": 34,
+    "name": "Canned Soup",
+    "description": "Assorted canned soup",
+    "price": 12.99
+  },
+  {
+    "id": 35,
+    "name": "Pasta Sauce",
+    "description": "Tomato pasta sauce",
+    "price": 13.25
+  },
+  {
+    "id": 36,
+    "name": "Granola Bars",
+    "description": "Assorted granola bar",
+    "price": 10.8
+  },
+  {
+    "id": 37,
+    "name": "Deli Meat",
+    "description": "Sliced deli meat",
+    "price": 14.5
+  },
+  {
+    "id": 38,
+    "name": "Frozen Fruit",
+    "description": "Assorted frozen fruit",
+    "price": 11.99
+  },
+  {
+    "id": 39,
+    "name": "Honey",
+    "description": "Pure honey",
+    "price": 15.25
+  },
+  {
+    "id": 40,
+    "name": "Maple Syrup",
+    "description": "100% pure maple syrup",
+    "price": 17.99
+  }
+]
