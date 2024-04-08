@@ -20,7 +20,7 @@ const setupData = () => {
   return { result, rerender };
 };
 
-describe("useItems hook functions", () => {
+describe("itemsList manipulation functions", () => {
   it("should fetch items with the proper structure", async () => {
     const { result, rerender } = renderHook(() => useItems());
 

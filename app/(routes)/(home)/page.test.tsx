@@ -10,16 +10,17 @@ const renderWithProviders = (component: React.ReactElement) => {
   return render(<AppProviders>{component}</AppProviders>);
 };
 
-describe("HomePage UI functionalities", () => {
-  test("should render the item list", async () => {
+describe("itemsList UI manipulations", () => {
+  beforeEach(async () => {
     renderWithProviders(<Home />);
     await screen.findByTestId("itemsList");
+  });
+
+  test("should render the item list", async () => {
     expect(screen.getByTestId("itemsList")).toBeInTheDocument();
   });
 
-  test("should filter items by name", async () => {
-    renderWithProviders(<Home />);
-    await screen.findByTestId("itemsList");
+  test("should filter items by name when typing in the search bar", async () => {
     const searchBar = screen.getByTestId("searchBar");
     userEvent.type(searchBar, "Apples");
     await waitFor(() => {
@@ -29,9 +30,7 @@ describe("HomePage UI functionalities", () => {
     });
   });
 
-  test("should sort items by name", async () => {
-    renderWithProviders(<Home />);
-    await screen.findByTestId("itemsList");
+  test("should sort items by name when the button is clicked", async () => {
     const sortByNameButton = screen.getByTestId("sortByNameBtn");
     userEvent.click(sortByNameButton);
 
@@ -44,9 +43,7 @@ describe("HomePage UI functionalities", () => {
     });
   });
 
-  test("should sort items by price", async () => {
-    renderWithProviders(<Home />);
-    await screen.findByTestId("itemsList");
+  test("should sort items by price when the button is clicked", async () => {
     const sortByNameButton = screen.getByTestId("sortByPriceBtn");
     userEvent.click(sortByNameButton);
 
@@ -59,9 +56,7 @@ describe("HomePage UI functionalities", () => {
     });
   });
 
-  test("should add item to the cart", async () => {
-    renderWithProviders(<Home />);
-    await screen.findByTestId("itemsList");
+  test("should add item to the cart when the button is clicked", async () => {
     await waitFor(() => {
       const itemsList = screen.getByTestId("itemsList");
       const firstItem = itemsList.firstChild as HTMLElement;
