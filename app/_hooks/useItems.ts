@@ -4,27 +4,33 @@ import { useEffect, useState } from "react";
 const useItems = () => {
   const [itemsList, setItemsList] = useState<IItem[]>(INITIAL_ITEMS);
   const [shownItems, setShownItems] = useState<IItem[]>(INITIAL_ITEMS);
+  const [searchString, setSearchString] = useState("");
+  const [priceFilter, setPriceFilter] = useState<[number, number]>();
 
   const updateItemsList = (newItems: IItem[]) => {
     setItemsList(newItems);
     setShownItems(newItems);
   };
 
-  const filterItemsByName = (searchString: string) => {
-    if (!itemsList) return;
-
+  useEffect(() => {
     const searchTerm = searchString.toLowerCase();
-    const newShownItems = itemsList.filter((item) => item.name.toLowerCase().includes(searchTerm));
+    let newShownItems = itemsList.filter((item) => item.name.toLowerCase().includes(searchTerm));
+
+    if (priceFilter) {
+      newShownItems = newShownItems.filter(
+        (item) => item.price >= priceFilter[0] && item.price <= priceFilter[1]
+      );
+    }
+
     setShownItems(newShownItems);
+  }, [searchString, priceFilter]);
+
+  const filterItemsByName = (searchString: string) => {
+    setSearchString(searchString);
   };
 
   const filterItemsByPrice = (minPrice: number, maxPrice: number) => {
-    if (!itemsList) return;
-
-    const newShownItems = itemsList.filter(
-      (item) => item.price >= minPrice && item.price <= maxPrice
-    );
-    setShownItems(newShownItems);
+    setPriceFilter([minPrice, maxPrice]);
   };
 
   const sortItemsByName = (direction: ISortDirection) => {

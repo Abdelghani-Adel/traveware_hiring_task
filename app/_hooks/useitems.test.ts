@@ -1,6 +1,25 @@
 import { renderHook, act } from "@testing-library/react";
 import useItems from "./useItems";
 
+const setupData = () => {
+  const { result, rerender } = renderHook(() => useItems());
+  act(() => {
+    const itemsList = [
+      { id: 1, name: "Chocolate", description: "", price: 30 },
+      { id: 2, name: "Apples", description: "", price: 10 },
+      { id: 3, name: "Appetizers", description: "", price: 15 },
+      { id: 4, name: "Bananas", description: "", price: 20 },
+      { id: 5, name: "Yogurt", description: "", price: 40 },
+    ];
+    result.current.updateItemsList(itemsList);
+  });
+
+  rerender(() => result.current.itemsList);
+  rerender(() => result.current.shownItems);
+
+  return { result, rerender };
+};
+
 describe("useItems hook functions", () => {
   it("should fetch items with the proper structure", async () => {
     const { result, rerender } = renderHook(() => useItems());
@@ -20,24 +39,6 @@ describe("useItems hook functions", () => {
   });
 
   describe("Filtering Features", () => {
-    const setupData = () => {
-      const { result, rerender } = renderHook(() => useItems());
-      act(() => {
-        const itemsList = [
-          { id: 1, name: "Chocolate", description: "", price: 30 },
-          { id: 2, name: "Apples", description: "", price: 10 },
-          { id: 3, name: "Bananas", description: "", price: 20 },
-          { id: 4, name: "Yogurt", description: "", price: 40 },
-        ];
-        result.current.updateItemsList(itemsList);
-      });
-
-      rerender(() => result.current.itemsList);
-      rerender(() => result.current.shownItems);
-
-      return { result, rerender };
-    };
-
     it("should filter items with existing item's name", () => {
       const { result } = setupData();
 
@@ -65,7 +66,7 @@ describe("useItems hook functions", () => {
         result.current.filterItemsByName("");
       });
 
-      expect(result.current.shownItems).toHaveLength(4);
+      expect(result.current.shownItems).toHaveLength(5);
     });
 
     it("should filter items with price range", () => {
@@ -78,6 +79,19 @@ describe("useItems hook functions", () => {
       expect(result.current.shownItems).toMatchObject([{ price: 30 }]);
     });
 
+    it("should filter with name and price range at the same time", () => {
+      const { result } = setupData();
+
+      act(() => {
+        result.current.filterItemsByName("App");
+        result.current.filterItemsByPrice(12, 18);
+      });
+
+      expect(result.current.shownItems).toMatchObject([{ name: "Appetizers", price: 15 }]);
+    });
+  });
+
+  describe("Sorting Features", () => {
     it("should sort items by name 'asc'", () => {
       const { result } = setupData();
 
@@ -85,7 +99,7 @@ describe("useItems hook functions", () => {
         result.current.sortItemsByName("asc");
       });
 
-      expect(result.current.shownItems[0]).toMatchObject({ name: "Apples" });
+      expect(result.current.shownItems[0]).toMatchObject({ name: "Appetizers" });
     });
 
     it("should sort items by name 'desc'", () => {
