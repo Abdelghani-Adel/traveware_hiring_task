@@ -9,7 +9,7 @@ const MainHeader = () => {
   const cartState = useAppSelector((state) => state.cart);
 
   return (
-    <div className={styles.wrapper}>
+    <div className="bg-secondary py-3">
       <div className="container">
         <div className="d-flex align-items-center justify-content-between">
           <Link href="/" className="m-0 text-white text-decoration-none">

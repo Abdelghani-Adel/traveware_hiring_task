@@ -32,11 +32,11 @@ const SortingActions = (props: IProps) => {
 
   return (
     <div className="d-flex gap-3">
-      <button className="btn btn-warning" data-testid="sortByNameBtn" onClick={handleNameSort}>
+      <button className="btn btn-secondary" data-testid="sortByNameBtn" onClick={handleNameSort}>
         Sort By Name{" "}
         {nameOrder && (nameOrder === "asc" ? <FaSortAlphaDown /> : <FaSortAlphaUpAlt />)}
       </button>
-      <button className="btn btn-warning" data-testid="sortByPriceBtn" onClick={handlePriceSort}>
+      <button className="btn btn-secondary" data-testid="sortByPriceBtn" onClick={handlePriceSort}>
         Sort By Price{" "}
         {priceOrder && (priceOrder === "asc" ? <FaSortNumericDown /> : <FaSortNumericUpAlt />)}
       </button>
