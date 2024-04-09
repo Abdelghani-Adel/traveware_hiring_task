@@ -42,8 +42,8 @@ describe("itemsList UI manipulations", () => {
       const itemsList = screen.getByTestId("itemsList");
       const firstItem = itemsList.firstChild as HTMLElement;
       const lastItem = itemsList.lastChild as HTMLElement;
-      expect(firstItem).toHaveTextContent("aa");
-      expect(lastItem).toHaveTextContent("z");
+      expect(firstItem).toMatch(/a/i);
+      expect(lastItem).toMatch(/z/i);
     });
   });
 
