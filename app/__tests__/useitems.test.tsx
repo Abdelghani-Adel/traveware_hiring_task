@@ -1,13 +1,13 @@
-import { renderHook, act } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 import useItems from "../_hooks/useItems";
+import { mockFetch, reduxWrapper } from "./utils";
 
-jest.mock("@/public/data/items.json", () =>
-  require("./__mocks__/items.mock.json")
-);
+jest.mock("@/public/data/items.json", () => require("./__mocks__/items.mock.json"));
+global.fetch = mockFetch();
 
 describe("itemsList manipulation functions", () => {
   it("should fetch items with the proper structure", async () => {
-    const { result } = renderHook(() => useItems());
+    const { result } = renderHook(() => useItems(), { wrapper: reduxWrapper });
 
     expect(result.current.shownItems).toEqual(
       expect.arrayContaining([
@@ -22,18 +22,20 @@ describe("itemsList manipulation functions", () => {
   });
 
   describe("Filtering Features", () => {
-    it("should filter items with existing item's name", () => {
-      const { result } = renderHook(() => useItems());
+    it("should filter items with existing item's name", async () => {
+      const { result, rerender } = renderHook(() => useItems(), { wrapper: reduxWrapper });
+
+      rerender();
 
       act(() => {
         result.current.filterItemsByName("a");
       });
 
-      expect(result.current.shownItems[0].name).toMatch(/a/i);
+      expect(result.current.shownItems && result.current.shownItems[0].name).toMatch(/a/i);
     });
 
     it("should filter items with non existing item's name", () => {
-      const { result } = renderHook(() => useItems());
+      const { result } = renderHook(() => useItems(), { wrapper: reduxWrapper });
 
       act(() => {
         result.current.filterItemsByName("non-exist-name");
@@ -43,7 +45,7 @@ describe("itemsList manipulation functions", () => {
     });
 
     it("should filter items with empty string", () => {
-      const { result } = renderHook(() => useItems());
+      const { result } = renderHook(() => useItems(), { wrapper: reduxWrapper });
 
       act(() => {
         result.current.filterItemsByName("");
@@ -53,7 +55,7 @@ describe("itemsList manipulation functions", () => {
     });
 
     it("should filter items with price range", () => {
-      const { result } = renderHook(() => useItems());
+      const { result } = renderHook(() => useItems(), { wrapper: reduxWrapper });
 
       act(() => {
         result.current.filterItemsByPrice(2, 3);
@@ -63,7 +65,7 @@ describe("itemsList manipulation functions", () => {
     });
 
     it("should filter with name and price range at the same time", () => {
-      const { result } = renderHook(() => useItems());
+      const { result } = renderHook(() => useItems(), { wrapper: reduxWrapper });
 
       act(() => {
         result.current.filterItemsByName("a");
@@ -71,50 +73,50 @@ describe("itemsList manipulation functions", () => {
       });
 
       expect(result.current.shownItems).toHaveLength(2);
-      expect(result.current.shownItems[0].name).toMatch(/a/i);
-      expect(result.current.shownItems[1].name).toMatch(/a/i);
+      expect(result.current.shownItems && result.current.shownItems[0].name).toMatch(/a/i);
+      expect(result.current.shownItems && result.current.shownItems[1].name).toMatch(/a/i);
     });
   });
 
   describe("Sorting Features", () => {
     it("should sort items by name 'asc'", () => {
-      const { result } = renderHook(() => useItems());
+      const { result } = renderHook(() => useItems(), { wrapper: reduxWrapper });
 
       act(() => {
         result.current.sortItemsByName("asc");
       });
 
-      expect(result.current.shownItems[0].name).toMatch(/a/i);
+      expect(result.current.shownItems && result.current.shownItems[0].name).toMatch(/a/i);
     });
 
     it("should sort items by name 'desc'", () => {
-      const { result } = renderHook(() => useItems());
+      const { result } = renderHook(() => useItems(), { wrapper: reduxWrapper });
 
       act(() => {
         result.current.sortItemsByName("desc");
       });
 
-      expect(result.current.shownItems[0].name).toMatch(/z/i);
+      expect(result.current.shownItems && result.current.shownItems[0].name).toMatch(/z/i);
     });
 
     it("should sort items by price 'asc'", () => {
-      const { result } = renderHook(() => useItems());
+      const { result } = renderHook(() => useItems(), { wrapper: reduxWrapper });
 
       act(() => {
         result.current.sortItemsByPrice("asc");
       });
 
-      expect(result.current.shownItems[0]).toMatchObject({ price: 1 });
+      expect(result.current.shownItems && result.current.shownItems[0]).toMatchObject({ price: 1 });
     });
 
     it("should sort items by price 'desc'", () => {
-      const { result } = renderHook(() => useItems());
+      const { result } = renderHook(() => useItems(), { wrapper: reduxWrapper });
 
       act(() => {
         result.current.sortItemsByPrice("desc");
       });
 
-      expect(result.current.shownItems[0]).toMatchObject({ price: 5 });
+      expect(result.current.shownItems && result.current.shownItems[0]).toMatchObject({ price: 5 });
     });
   });
 });

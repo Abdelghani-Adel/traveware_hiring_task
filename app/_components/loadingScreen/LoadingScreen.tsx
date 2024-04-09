@@ -8,7 +8,7 @@ const LoadingScreen = () => {
   if (!loader.isShown) return null;
 
   return (
-    <div className={styles.loadingScreen}>
+    <div data-testid="loadingScreen" className={styles.loadingScreen}>
       <div className={styles.loadingContainer}>
         <div className={styles.loadingText}>
           <span>L</span>

@@ -5,14 +5,10 @@ import userEvent from "@testing-library/user-event";
 import React from "react";
 import Home from "../(routes)/(home)/page";
 import store from "@/app/_redux/store";
+import { mockFetch, renderWithProviders } from "./utils";
 
-jest.mock("@/public/data/items.json", () =>
-  require("./__mocks__/items.mock.json")
-);
-
-const renderWithProviders = (component: React.ReactElement) => {
-  return render(<AppProviders>{component}</AppProviders>);
-};
+jest.mock("@/public/data/items.json", () => require("./__mocks__/items.mock.json"));
+global.fetch = mockFetch();
 
 describe("itemsList UI manipulations", () => {
   beforeEach(async () => {
@@ -42,8 +38,8 @@ describe("itemsList UI manipulations", () => {
       const itemsList = screen.getByTestId("itemsList");
       const firstItem = itemsList.firstChild as HTMLElement;
       const lastItem = itemsList.lastChild as HTMLElement;
-      expect(firstItem).toMatch(/a/i);
-      expect(lastItem).toMatch(/z/i);
+      expect(firstItem.textContent).toMatch(/a/i);
+      expect(lastItem.textContent).toMatch(/z/i);
     });
   });
 
@@ -64,9 +60,7 @@ describe("itemsList UI manipulations", () => {
     await waitFor(() => {
       const itemsList = screen.getByTestId("itemsList");
       const firstItem = itemsList.firstChild as HTMLElement;
-      const buttonInFirstItem = firstItem.querySelector(
-        '[data-testid="addToCartBtn"]'
-      );
+      const buttonInFirstItem = firstItem.querySelector('[data-testid="addToCartBtn"]');
       buttonInFirstItem && fireEvent.click(buttonInFirstItem);
     });
 

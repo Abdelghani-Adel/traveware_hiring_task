@@ -5,8 +5,8 @@ import { loaderActions } from "../_redux/slices/loaderSlice";
 
 const useItems = () => {
   const dispatch = useAppDispatch();
-  const [itemsList, setItemsList] = useState<IItem[]>();
-  const [shownItems, setShownItems] = useState<IItem[]>();
+  const [itemsList, setItemsList] = useState<IItem[]>(INITIAL_ITEMS);
+  const [shownItems, setShownItems] = useState<IItem[]>(INITIAL_ITEMS);
   const [searchString, setSearchString] = useState("");
   const [priceFilter, setPriceFilter] = useState<[number, number]>();
 
