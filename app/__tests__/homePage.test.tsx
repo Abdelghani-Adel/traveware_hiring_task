@@ -3,8 +3,12 @@ import "@testing-library/jest-dom";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
-import Home from "./page";
+import Home from "../(routes)/(home)/page";
 import store from "@/app/_redux/store";
+
+jest.mock("@/public/data/items.json", () =>
+  require("./__mocks__/items.mock.json")
+);
 
 const renderWithProviders = (component: React.ReactElement) => {
   return render(<AppProviders>{component}</AppProviders>);
@@ -22,11 +26,11 @@ describe("itemsList UI manipulations", () => {
 
   test("should filter items by name when typing in the search bar", async () => {
     const searchBar = screen.getByTestId("searchBar");
-    userEvent.type(searchBar, "Apples");
+    userEvent.type(searchBar, "aa");
     await waitFor(() => {
       const itemsList = screen.getByTestId("itemsList");
-      expect(screen.getByText("Apples")).toBeInTheDocument();
-      expect(itemsList).not.toHaveTextContent("Yogurt");
+      expect(screen.getByText("aa")).toBeInTheDocument();
+      expect(itemsList).not.toHaveTextContent("z");
     });
   });
 
@@ -38,8 +42,8 @@ describe("itemsList UI manipulations", () => {
       const itemsList = screen.getByTestId("itemsList");
       const firstItem = itemsList.firstChild as HTMLElement;
       const lastItem = itemsList.lastChild as HTMLElement;
-      expect(firstItem).toHaveTextContent("Apples");
-      expect(lastItem).toHaveTextContent("Yogurt");
+      expect(firstItem).toHaveTextContent("aa");
+      expect(lastItem).toHaveTextContent("z");
     });
   });
 
@@ -51,8 +55,8 @@ describe("itemsList UI manipulations", () => {
       const itemsList = screen.getByTestId("itemsList");
       const firstItem = itemsList.firstChild as HTMLElement;
       const lastItem = itemsList.lastChild as HTMLElement;
-      expect(firstItem).toHaveTextContent("9.95");
-      expect(lastItem).toHaveTextContent("24.99");
+      expect(firstItem).toHaveTextContent("1");
+      expect(lastItem).toHaveTextContent("5");
     });
   });
 
@@ -60,7 +64,9 @@ describe("itemsList UI manipulations", () => {
     await waitFor(() => {
       const itemsList = screen.getByTestId("itemsList");
       const firstItem = itemsList.firstChild as HTMLElement;
-      const buttonInFirstItem = firstItem.querySelector('[data-testid="addToCartBtn"]');
+      const buttonInFirstItem = firstItem.querySelector(
+        '[data-testid="addToCartBtn"]'
+      );
       buttonInFirstItem && fireEvent.click(buttonInFirstItem);
     });
 

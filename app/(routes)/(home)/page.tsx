@@ -5,9 +5,14 @@ import SearchBar from "./_searchBar";
 import SortingActions from "./_sortingActions";
 import PriceFilter from "./_priceFilter";
 
-const Home: React.FC = () => {
-  const { shownItems, filterItemsByName, filterItemsByPrice, sortItemsByName, sortItemsByPrice } =
-    useItems();
+const Home = () => {
+  const {
+    shownItems,
+    filterItemsByName,
+    filterItemsByPrice,
+    sortItemsByName,
+    sortItemsByPrice,
+  } = useItems();
 
   if (!shownItems) {
     return <div>Loading...</div>;
@@ -19,7 +24,10 @@ const Home: React.FC = () => {
         <div className="row g-3">
           <div className="col-12 col-xl-3">
             <div className="d-flex flex-column gap-3">
-              <SortingActions sortName={sortItemsByName} sortPrice={sortItemsByPrice} />
+              <SortingActions
+                sortName={sortItemsByName}
+                sortPrice={sortItemsByPrice}
+              />
               <SearchBar onChange={filterItemsByName} />
               <PriceFilter onPriceChange={filterItemsByPrice} />
             </div>

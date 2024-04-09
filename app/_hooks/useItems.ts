@@ -7,14 +7,11 @@ const useItems = () => {
   const [searchString, setSearchString] = useState("");
   const [priceFilter, setPriceFilter] = useState<[number, number]>();
 
-  const updateItemsList = (newItems: IItem[]) => {
-    setItemsList(newItems);
-    setShownItems(newItems);
-  };
-
   useEffect(() => {
     const searchTerm = searchString.toLowerCase();
-    let newShownItems = itemsList.filter((item) => item.name.toLowerCase().includes(searchTerm));
+    let newShownItems = itemsList.filter((item) =>
+      item.name.toLowerCase().includes(searchTerm)
+    );
 
     if (priceFilter) {
       newShownItems = newShownItems.filter(
@@ -24,6 +21,11 @@ const useItems = () => {
 
     setShownItems(newShownItems);
   }, [searchString, priceFilter]);
+
+  const updateItemsList = (newItems: IItem[]) => {
+    setItemsList(newItems);
+    setShownItems(newItems);
+  };
 
   const filterItemsByName = (searchString: string) => {
     setSearchString(searchString);
