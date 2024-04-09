@@ -1,5 +1,6 @@
 "use client";
 import { cartActions } from "@/app/_redux/slices/cartSlice";
+import { loaderActions } from "@/app/_redux/slices/loaderSlice";
 import { useAppDispatch, useAppSelector } from "@/app/_redux/store";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -12,9 +13,14 @@ const Page = () => {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(cartActions.checkout());
-    toast.success("You order has been placed successfully");
-    router.push("/");
+    dispatch(loaderActions.showLoadingOverlay());
+
+    setTimeout(() => {
+      dispatch(loaderActions.hideLoadingOverlay());
+      dispatch(cartActions.checkout());
+      toast.success("You order has been placed successfully");
+      router.push("/");
+    }, 3000);
   };
 
   return (

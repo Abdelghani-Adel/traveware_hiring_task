@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useAppSelector } from "../_redux/store";
+import { useAppSelector } from "../../_redux/store";
 import Link from "next/link";
 import { FiShoppingCart } from "react-icons/fi";
 import styles from "./mainHeader.module.css";

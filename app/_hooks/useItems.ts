@@ -1,20 +1,37 @@
 import INITIAL_ITEMS from "@/public/data/items.json";
 import { useEffect, useState } from "react";
+import { useAppDispatch } from "../_redux/store";
+import { loaderActions } from "../_redux/slices/loaderSlice";
 
 const useItems = () => {
-  const [itemsList, setItemsList] = useState<IItem[]>(INITIAL_ITEMS);
-  const [shownItems, setShownItems] = useState<IItem[]>(INITIAL_ITEMS);
+  const dispatch = useAppDispatch();
+  const [itemsList, setItemsList] = useState<IItem[]>();
+  const [shownItems, setShownItems] = useState<IItem[]>();
   const [searchString, setSearchString] = useState("");
   const [priceFilter, setPriceFilter] = useState<[number, number]>();
 
   useEffect(() => {
+    const fetchData = async () => {
+      dispatch(loaderActions.showLoadingOverlay());
+      const response = await fetch("/data/items.json");
+      const result = await response.json();
+
+      setTimeout(() => {
+        setItemsList(result);
+        setShownItems(result);
+        dispatch(loaderActions.hideLoadingOverlay());
+      }, 3000);
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
     const searchTerm = searchString.toLowerCase();
-    let newShownItems = itemsList.filter((item) =>
-      item.name.toLowerCase().includes(searchTerm)
-    );
+    let newShownItems = itemsList?.filter((item) => item.name.toLowerCase().includes(searchTerm));
 
     if (priceFilter) {
-      newShownItems = newShownItems.filter(
+      newShownItems = newShownItems?.filter(
         (item) => item.price >= priceFilter[0] && item.price <= priceFilter[1]
       );
     }

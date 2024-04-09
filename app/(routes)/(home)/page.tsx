@@ -6,16 +6,13 @@ import SortingActions from "./_sortingActions";
 import PriceFilter from "./_priceFilter";
 
 const Home = () => {
-  const {
-    shownItems,
-    filterItemsByName,
-    filterItemsByPrice,
-    sortItemsByName,
-    sortItemsByPrice,
-  } = useItems();
+  const { shownItems, filterItemsByName, filterItemsByPrice, sortItemsByName, sortItemsByPrice } =
+    useItems();
 
-  if (!shownItems) {
-    return <div>Loading...</div>;
+  if (!shownItems) return null;
+
+  if (shownItems.length == 0) {
+    return <h4 className="text-center mt-4">No Items Found!</h4>;
   }
 
   return (
@@ -24,10 +21,7 @@ const Home = () => {
         <div className="row g-3">
           <div className="col-12 col-xl-3">
             <div className="d-flex flex-column gap-3">
-              <SortingActions
-                sortName={sortItemsByName}
-                sortPrice={sortItemsByPrice}
-              />
+              <SortingActions sortName={sortItemsByName} sortPrice={sortItemsByPrice} />
               <SearchBar onChange={filterItemsByName} />
               <PriceFilter onPriceChange={filterItemsByPrice} />
             </div>

@@ -3,7 +3,11 @@ import ItemCard from "./_itemsCard";
 import { v4 } from "uuid";
 
 const ItemList = (props: IProps) => {
-  if (!props.data) return null;
+  const { data } = props;
+
+  if (!data || data.length == 0) {
+    return null;
+  }
 
   return (
     <div data-testid="itemsList" className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3">
